@@ -1,4 +1,4 @@
-# Automatic Tract Classification Based On Raw Points
+# Automatic Tract Classification Based On Raw Points and Local Curvature
 
 This project has for aim to replace the [TRAFIC](https://github.com/NIRALUser/Trafic.git) model in [AutoTract](https://github.com/NIRALUser/AutoTract.git). The need for replacement arises from the manual cleaning required after classification, which we aim to eliminate.\
 This project has been coded in [Python](https://www.python.org/) and models were coded using [PyTorch](https://github.com/pytorch/pytorch.git),[Pytorch-Lightning](https://github.com/Lightning-AI/pytorch-lightning.git) and [MONAI](https://github.com/Project-MONAI/MONAI.git).
