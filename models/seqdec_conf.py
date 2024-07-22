@@ -14,7 +14,7 @@ from utils.FuncUtils.utils import calculate_batch_curvature, calculate_batch_tor
 import pandas as pd
 import numpy as np
 from random import randrange
-from augmentations import RandomAugmentation, AddSmallFiber
+from models.augmentations import RandomAugmentation, AddSmallFiber
 torch.set_float32_matmul_precision('high')
 
 class MLP(nn.Module):
