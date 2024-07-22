@@ -4,7 +4,6 @@ from Data_processing import fibersampling, computeCsv
 import os
 import shutil
 import pandas as pd
-import json
 
 def get_argparse_dict(parser):
     # Get the default arguments from the parser
@@ -20,7 +19,8 @@ def main(args):
     df = pd.DataFrame(columns=["id", "original_path", "sampled_path"])
     for file in os.listdir(args.path):
         if file.endswith(".vtk"):
-            df = df._append({"original_path": os.path.join(args.path, file), "id": file.split('.')[0]}, ignore_index=True)
+            df.loc[len(df)] = [file.split('.')[0], os.path.join(args.path, file), None]
+            # df = df._append({"original_path": os.path.join(args.path, file), "id": file.split('.')[0]}, ignore_index=True)
 
     ############################ 1. Resample the data ############################
     print("""\n################################ Resampling the data ################################\n""")

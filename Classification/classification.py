@@ -1,30 +1,21 @@
 import os
 import vtk
-import json
 import torch
 import numpy as np
 import pandas as pd
 from vtk.util.numpy_support import vtk_to_numpy
-from utils.DataUtils.utils import ReadSurf
-from utils.FuncUtils.utils import *
+from utils.FuncUtils.utils import calculate_batch_curvature, calculate_batch_torsion, normalize_batch, read_vtk_file, init_visitation_map, write_vtk_file, get_visitation_map, get_visitation_scores, visitation_pruning, iterative_clustering_pruning, mean_bounding_box_pruning, length_pruning
 from Dataloaders.classification_dataloader import DataModule
 import time
-from multiprocessing import Pool
 import argparse
 
-from models.BLSTM import BLSTM
 from models.pointnet import PN
-from models.pointnet_conf import PNConf
 from models.dec import DEC
-from models.dec_conf import DECConf
 from models.seqdec import seqDEC
 from models.seqdec_conf import seqDECConf
 
-import matplotlib.pyplot as plt
-
 torch.multiprocessing.set_sharing_strategy('file_system')
 
-from sklearn.cluster import DBSCAN
 
 def fill_polydata(polydata_list, verts, prediction, confidence=None):
     # Get the polydata object corresponding to the prediction index
@@ -71,14 +62,10 @@ def main(args):
         os.mkdir(args.save_path)
 
     # Initialize the model
-    if args.model == "PNConf":
-        model = PNConf
     elif args.model == "PN":
         model = PN
     elif args.model == "DEC":
         model = DEC
-    elif args.model == "DECConf":
-        model = DECConf
     elif args.model == "seqDEC":
         model = seqDEC
     elif args.model == "seqDECConf":
@@ -205,12 +192,6 @@ def main(args):
 
                     visitation_map = get_visitation_map(polydata, empty_visitation_map, voxel_size)
                     visitation_scores = get_visitation_scores(visitation_map, polydata, voxel_size)
-
-                    #plot histogram
-                    # plt.hist(visitation_scores, bins=100)
-                    # plt.title("Visitation Scores")
-                    # plt.show()
-
                     threshold = np.mean(visitation_scores) - np.std(visitation_scores)
                     polydata, _ = visitation_pruning(polydata, visitation_scores, threshold)                
 

@@ -1,0 +1,43 @@
+# Use this configuration file if you want to train a model from a pretrained model that has been trained with the same architecture but different dataset.
+# Use the half mode if you want to train the model from a pretrained model.
+
+# General configuration
+mode: half
+pretrained_model: # If you want to transfer the knowledge from an other model, write the path of a checkpoint file
+model: seqDECConf
+n_epochs: 500
+num_workers: 7
+k: 5
+input_size: 4
+embedding_size: 256
+aggr: max
+num_heads: 8
+
+# Model & data configuration
+train_path: YOUR_TRAINING_DATA.csv                # Path to the training data   
+val_path: YOUR_VALIDATION_DATA.csv                # Path to the validation data
+test_path: YOUR_TESTING_DATA.csv                  # Path to the test data
+n_samples: 200                                    # Number of samples to be used
+n_classes: 63                                     # Number of classes
+batch_size: 4000                                  # Batch size
+buffer_size: 500                                  # Buffer size
+step_log: 10                                      # Step to log
+checkpoint_path: YOUR_CHECKPOINT_PATH             # Path to save the model
+dropout: True                                     # Use dropout
+noise: True                                       # Use noise
+noise_range: 0.1                                  # Noise range
+rotation: True                                    # Use rotation
+rotation_range: 0.1                               # Rotation range
+shear: True                                       # Use shear
+shear_range: 0.05                                 # Shear range
+translation: False                                # Use translation
+translation_range: 0.001                          # Translation range
+augmentation_prob: 0.4                            # Augmentation probability
+
+# Neptune configuration
+api_key: YOUR_API_KEY
+project: YOUR_PROJECT
+monitor: val_loss
+min_delta: 0.00
+patience: 20
+early_stopping_mode: min

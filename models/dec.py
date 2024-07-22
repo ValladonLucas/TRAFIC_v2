@@ -7,7 +7,7 @@ from torch.nn import Sequential as Seq
 from torch_geometric.nn import global_max_pool, DynamicEdgeConv
 import torchmetrics
 import pytorch_lightning as pl
-from utils.FuncUtils.utils import *
+from utils.FuncUtils.utils import calculate_batch_curvature, calculate_batch_torsion, normalize_batch
 torch.set_float32_matmul_precision('high')
 
 class MLP(nn.Module):
@@ -95,14 +95,16 @@ class DEC(pl.LightningModule):
             
             # Curvature
             C = calculate_batch_curvature(V)
-            V, C = normalize_batch(V, C, BBB, 0.1)
+            # Torsion
+            T = calculate_batch_torsion(V)
+            V, C, T = normalize_batch(V, BBB, C=C, T=T, tolerance=0.1)
 
-            # Adding features
             if self.input_size == 3:
                 data = V
             elif self.input_size == 4:
-                # Adding features
                 data = torch.cat([V, C.unsqueeze(-1)], dim=2)
+            elif self.input_size == 5:
+                data = torch.cat([V, C.unsqueeze(-1), T.unsqueeze(-1)], dim=2)
 
             # Forward pass
             Y = self(data)
@@ -120,13 +122,18 @@ class DEC(pl.LightningModule):
         batch_size = len(val_batch[0])
         V, L, BBB, _ = val_batch
 
+        # Curvature
         C = calculate_batch_curvature(V)
-        V, C = normalize_batch(V, C, BBB, 0.1)
+        # Torsion
+        T = calculate_batch_torsion(V)
+        V, C, T = normalize_batch(V, BBB, C=C, T=T, tolerance=0.1)
+
         if self.input_size == 3:
             data = V
         elif self.input_size == 4:
-            # Adding features
             data = torch.cat([V, C.unsqueeze(-1)], dim=2)
+        elif self.input_size == 5:
+            data = torch.cat([V, C.unsqueeze(-1), T.unsqueeze(-1)], dim=2)
 
         Y = self(data)
 
@@ -142,13 +149,18 @@ class DEC(pl.LightningModule):
         batch_size = len(test_batch[0])
         V, L, BBB, _ = test_batch
 
+        # Curvature
         C = calculate_batch_curvature(V)
-        V, C = normalize_batch(V, C, BBB, 0.1)
+        # Torsion
+        T = calculate_batch_torsion(V)
+        V, C, T = normalize_batch(V, BBB, C=C, T=T, tolerance=0.1)
+
         if self.input_size == 3:
             data = V
         elif self.input_size == 4:
-            # Adding features
             data = torch.cat([V, C.unsqueeze(-1)], dim=2)
+        elif self.input_size == 5:
+            data = torch.cat([V, C.unsqueeze(-1), T.unsqueeze(-1)], dim=2)
 
         Y = self(data)
 

@@ -1,0 +1,63 @@
+# Use this configuration file if you want to train two models with the same architecture but different datasets.
+# Use the full mode if you want to train the models from scratch.
+
+# General configuration
+mode: full
+model: seqDECConf
+n_epochs: 500
+num_workers: 7
+k: 5
+input_size: 4
+embedding_size: 256
+aggr: max
+num_heads: 8
+
+# First model & data configuration
+train_path_1: YOUR_TRAINING_DATA_1.csv            # Path to the training data
+val_path_1: YOUR_VALIDATION_DATA_1.csv            # Path to the validation data
+test_path_1: YOUR_TESTING_DATA_1.csv              # Path to the test data
+n_samples_1: 1500                                 # Number of samples to be used
+batch_size_1: 4000                                # Batch size
+buffer_size_1: 500                                # Buffer size
+n_classes_1: 58                                   # Number of classes
+step_log_1: 100                                   # Step to log
+checkpoint_path_1: YOUR_CHECKPOINT_PATH_1         # Path to save the model
+dropout_1: True                                   # Use dropout
+noise_1: True                                     # Use noise
+noise_range_1: 0.01                               # Noise range
+rotation_1: True                                  # Use rotation
+rotation_range_1: 0.1                             # Rotation range
+shear_1: True                                     # Use shear
+shear_range_1: 0.01                               # Shear range
+translation_1: True                               # Use translation
+translation_range_1: 0.01                         # Translation range
+augmentation_prob_1: 0.3                          # Augmentation probability
+
+# Second model & data configuration
+train_path_2: YOUR_TRAINING_DATA_2.csv                
+val_path_2: YOUR_VALIDATION_DATA_2.csv                    
+test_path_2: YOUR_TESTING_DATA_2.csv                  
+n_samples_2: 200
+batch_size_2: 4000
+buffer_size_2: 500
+n_classes_2: 63
+step_log_2: 10
+checkpoint_path_2: YOUR_CHECKPOINT_PATH_2
+dropout_2: True
+noise_2: True
+noise_range_2: 0.01
+rotation_2: True
+rotation_range_2: 0.1
+shear_2: True
+shear_range_2: 0.01
+translation_2: True
+translation_range_2: 0.01
+augmentation_prob_2: 0.5
+
+# Neptune configuration
+api_key: YOUR_API_KEY
+project: YOUR_PROJECT
+monitor: val_loss
+min_delta: 0.00
+patience: 10
+early_stopping_mode: min

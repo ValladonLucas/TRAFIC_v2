@@ -1,12 +1,9 @@
 from torch.utils.data import Dataset
 import torch
 import pytorch_lightning as pl
-from random import randint
 import pandas as pd
-import numpy as np
 from torch.utils.data import DataLoader
 from torch.nn.utils.rnn import pad_sequence
-
 from utils.FuncUtils.utils import read_vtk_file, ExtractFiber
 
 """

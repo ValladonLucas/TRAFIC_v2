@@ -1,6 +1,5 @@
 import pandas as pd
-import os, sys
-sys.path.append("/work/luvallad/project")
+import os
 import argparse
 import json
 import time
@@ -36,7 +35,7 @@ def get_argparse():
     parser = argparse.ArgumentParser(description='Compute CSV file with tracts of different subjects or with whole brain tractography', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('--mode', type=str, help='Mode to compute the CSV file (tracts/brain)', required=True)
-    parser.add_argument('--n_subjects', type=str, help='Number of subjects to process (single/multiple)', required=True)
+    parser.add_argument('--num_subjects', type=str, help='Number of subjects to process (single/multiple)', required=True)
     parser.add_argument('--vtk_path', type=str, help='Path to the subjects vtk file', required=True)
     parser.add_argument('--npy_path', type=str, help='Path to the subjects npy file, specify it only if you are processing tracts', default=None)
     parser.add_argument('--output', type=str, help='Path to the output csv file', required=True)

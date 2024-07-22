@@ -5,8 +5,6 @@ import multiprocessing as mp
 import os
 import argparse
 import time
-import sys
-sys.path.append("/work/luvallad/project")
 from utils.FuncUtils.utils import time_calculator
 
 def sampling_bundle(bundle, NEW_NUM_POINTS):

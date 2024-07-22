@@ -4,8 +4,6 @@ import numpy as np
 from multiprocessing import Pool
 import os
 import argparse
-import sys
-sys.path.append("/work/luvallad/project")
 from utils.FuncUtils.utils import time_calculator
 
 def bundle_to_np(bundle_file):

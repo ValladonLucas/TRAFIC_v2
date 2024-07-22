@@ -12,9 +12,7 @@ from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint, Callback
 from neptune import ANONYMOUS_API_TOKEN
 
 from models.pointnet import PN
-from models.pointnet_conf import PNConf
 from models.dec import DEC
-from models.dec_conf import DECConf
 from models.seqdec import seqDEC
 from models.seqdec_conf import seqDECConf
 
@@ -34,14 +32,10 @@ class DynamicModelCheckpoint(Callback):
 def main(args):
     
     # Initialize the model
-    if args.model == "PNConf":
-        model_type = PNConf
     elif args.model == "PN":
         model_type = PN
     elif args.model == "DEC":
         model_type = DEC
-    elif args.model == "DECConf":
-        model_type = DECConf
     elif args.model == "seqDEC":
         model_type = seqDEC
     elif args.model == "seqDECConf":
