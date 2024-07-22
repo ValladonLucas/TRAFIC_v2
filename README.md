@@ -31,7 +31,7 @@ To train the models, we use [VTK](https://vtk.org/) files. First, we resample al
 ```bash
 python fibersampling.py --num_points <new_number_of_points> [--csv | --path] <CSV-file-containing-tracts | Path to the folder containing vtk files> --output <output-path>
 ```
-| <div style="width:130px">Argument</div> | Required | Description | Data Type |
+| <div style="width:150px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
 | `--num_points` | Required | Number of points to resample the fiber with | Int |
 | `--csv` | Required if `--path` not specified | Path to the CSV file containing the paths to tract files | Str |
@@ -44,7 +44,7 @@ Then we convert these files to [Numpy](https://numpy.org/) files using `vtk_to_n
 ```bash
 python vtk_to_numpy.py --mode <single | multiple> --path <path-to-VTK-files> --num_points <num_points> --output <output-path>
 ```
-| <div style="width:130px">Argument</div>| Required | Description | Data Type |
+| <div style="width:150px">Argument</div>| Required | Description | Data Type |
 |---|---|---|---|
 | `--mode` | Required | Mode to run the conversion `single` or `multiple`| Str |
 | `--path` | Required | Path to the VTK files to convert (`mode` == `single`) or to the folders containing VTK files (`mode` == `multiple`) | Str |
@@ -75,7 +75,7 @@ Here's how to compute the csv file:
 ```bash
 python computeCsv.py --vtk_path <path-to-vtk-files> --npy_path <path-to-npy-files> --mode <tracts | brain> --num_subjects <single | multiple> --classes <path-to-classes-files> --name <output-file-name> --output <output-path>
 ```
-| <div style="width:130px">Argument</div> | Required | Description | Data Type |
+| <div style="width:150px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
 | `--vtk_path` | Required | Path to VTK files | Str |
 | `--npy_path` | Required | Path to NPY files | Str |
@@ -101,7 +101,7 @@ For a better observation of the model's behaviour, we split the data using `spli
 ```bash
 python splitData.py --csv_file <path-to-csv-file> --test_size <test-size> --val_size <val-size> --random_state <random_state> --output <output-path>
 ```
-| <div style="width:130px">Argument</div> | Required | Description | Data Type |
+| <div style="width:150px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
 | `--csv_file` | Required | Path to the csv file | Str |
 | `--test_size` | Required | Test size in percentage. Default = 0.2 | Float |
