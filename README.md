@@ -25,22 +25,26 @@ conda env create -f environment.yml
 ```
 ## Getting started : The Data
 
+### Resampling the fibers
+
 To train the models, we use [VTK](https://vtk.org/) files. First, we resample all the bundle files using `fibersampling.py` so all fibers have the same amount of points:
 ```bash
 python fibersampling.py --num_points <new_number_of_points> [--csv | --path] <CSV-file-containing-tracts | Path to the folder containing vtk files> --output <output-path>
 ```
-| <div style="width:120px">Argument</div> | Required | Description | Data Type |
+| <div style="width:130px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
 | `--num_points` | Required | Number of points to resample the fiber with | Int |
 | `--csv` | Required if `--path` not specified | Path to the CSV file containing the paths to tract files | Str |
 | `--path` | Required if `--csv` not specified | Path to the folder containing the VTK files to resample | Str |
 | `--output` | Required | Path of the output folder where resampled files will be saved | Str |
 
+### Numpy conversion
+
 Then we convert these files to [Numpy](https://numpy.org/) files using `vtk_to_numpy.py` because VTK is a slow computing library and it is faster to use `.npy` files:
 ```bash
 python vtk_to_numpy.py --mode <single | multiple> --path <path-to-VTK-files> --num_points <num_points> --output <output-path>
 ```
-| <div style="width:120px">Argument</div>| Required | Description | Data Type |
+| <div style="width:130px">Argument</div>| Required | Description | Data Type |
 |---|---|---|---|
 | `--mode` | Required | Mode to run the conversion `single` or `multiple`| Str |
 | `--path` | Required | Path to the VTK files to convert (`mode` == `single`) or to the folders containing VTK files (`mode` == `multiple`) | Str |
@@ -64,10 +68,12 @@ ls <path>
 subject1 subject2 subject3 subject4 ... 
 ```
 
-To generate the datasets, we use a Pytorch-Lightning **DataModule** that builds the **DataLoader** thanks to a `.csv` file generated with `csv_compute.py`.\
+### Compute CSV file
+
+To generate the datasets, we use a Pytorch-Lightning **DataModule** that builds the **DataLoader** thanks to a `.csv` file generated with `computeCsv.py`.\
 Here's how to compute the csv file:
 ```bash
-python csv_compute.py --vtk_path <path-to-vtk-files> --npy_path <path-to-npy-files> --mode <tracts | brain> --num_subjects <single | multiple> --classes <path-to-classes-files> --name <output-file-name> --output <output-path>
+python computeCsv.py --vtk_path <path-to-vtk-files> --npy_path <path-to-npy-files> --mode <tracts | brain> --num_subjects <single | multiple> --classes <path-to-classes-files> --name <output-file-name> --output <output-path>
 ```
 | <div style="width:130px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
@@ -230,7 +236,7 @@ Feel free to to set your own API_KEY and your own project file. You can also use
 
 ## Classification & Confidence level
 
-To get a better classification, we've added a confidence branch to every model : `PNConf.py`, `DECConf.py`, `seqDECConf.py`.\
+To get a better classification, we've added a confidence branch to our model.\
 Users can now use their model using a `.csv` file with all the **_classes_** and **_labels_** they want to classify and also adjust the confidence threshold they want to apply to each bundle in order to get a more or less selective classification.
 
 The CSV file has to have this structure :
@@ -256,7 +262,7 @@ Table explaining all arguments :
 
 | <div style="width:150px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
-| `--model` | Required | Model you want to run the classification {`PN`, `PNConf`, `DEC`, `DECConf`, `seqDEC`, `seqDECConf`} | String |
+| `--model` | Required | Model you want to run the classification {`PN`, `DEC`, `seqDEC`, `seqDECConf`} | String |
 | `--checkpoint_path` | Required | Path to the checkpoint file of a trained model | String |
 | `--batch_size` | Required | Batch size for classification. Default = 500 | Int |
 | `--num_workers` | Required | Number of workers for classification. Default = 7 | Int |
