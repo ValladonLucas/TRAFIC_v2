@@ -1,8 +1,11 @@
+# Add the parent directory to the system path
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import vtk
 import pandas as pd
 import numpy as np
 import multiprocessing as mp
-import os
 import argparse
 import time
 from utils.FuncUtils.utils import time_calculator

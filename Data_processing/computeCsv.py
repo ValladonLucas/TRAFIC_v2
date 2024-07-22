@@ -1,3 +1,7 @@
+# Add the parent directory to the system path
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pandas as pd
 import os
 import argparse
@@ -14,14 +18,14 @@ def main(args):
     output = os.path.join(args.output, args.name)
     if args.mode == 'tracts':
 
-        class_label_dict = json.load(open(args.classes, 'r'))
+        class_label_dict = pd.read_csv(args.classes).to_dict()
         global n_classes
         n_classes = len(class_label_dict['label'])
         
-        if args.n_subjects == 'single':
+        if args.num_subjects == 'single':
             # Folder that contains vtk and npy folders has to contain the brain vtk file
             df, _ = compute_single_subject(args.vtk_path, args.npy_path, df, class_label_dict)
-        elif args.n_subjects == 'multiple':
+        elif args.num_subjects == 'multiple':
             df = compute_multiple_subjects(args.vtk_path, args.npy_path, df, class_label_dict)
     elif args.mode == 'brain':
         df = compute_brains_csv(args.vtk_path, df)
