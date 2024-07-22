@@ -27,7 +27,7 @@ def main(args):
     fibersampling_args = get_argparse_dict(fibersampling.get_argparse())
     fibersampling_args["num_points"] = args.num_points
     fibersampling_args["path"] = args.path
-    fibersampling_args["output"] = os.path.join(args.output, f"sampled_{fibersampling_args['n']}")
+    fibersampling_args["output"] = os.path.join(args.output, f"sampled_{fibersampling_args['num_points']}")
 
     if not os.path.exists(fibersampling_args["output"]):
         os.mkdir(fibersampling_args["output"])
@@ -44,7 +44,7 @@ def main(args):
     computeCsv_args = get_argparse_dict(computeCsv.get_argparse())
     computeCsv_args["vtk_path"] = f"{fibersampling_args['output']}"
     computeCsv_args["output"] = f"{fibersampling_args['path']}"
-    computeCsv_args["name"] = f"sampled_{fibersampling_args['n']}_output.csv"
+    computeCsv_args["name"] = f"sampled_{fibersampling_args['num_points']}_output.csv"
     computeCsv_args["num_subjects"] = "single"
     computeCsv_args["mode"] = "brain"
 
@@ -83,12 +83,12 @@ def get_argparse():
     parser.add_argument('--num_points', type=int, help='Number of points', default=128)
 
     parser.add_argument('--model', type=str, help='Model to train', default="seqDECConf")
-    parser.add_argument('--checkpoint_path', type=str, help='Path to the checkpoint', default="/work/luvallad/project/Checkpoints/seqDECConf/white_matter_dataset/sampled_128/PNCON-1204-epoch=31-val_loss=0.34.ckpt")
+    parser.add_argument('--checkpoint_path', type=str, help='Path to the checkpoint', required=True)
 
-    parser.add_argument('--classes', type=str, help='Path to the json file with the classes', default="/work/luvallad/project/Datasets/white_matter_dataset/classes.csv")
+    parser.add_argument('--classes', type=str, help='Path to the json file with the classes', required=True)
 
-    parser.add_argument('--path', type=str, help='Path to vtk file', default="/work/luvallad/project/Classification")
-    parser.add_argument('--output', type=str, help='Path to save the output', default="/work/luvallad/project/Classification")
+    parser.add_argument('--path', type=str, help='Path to vtk file', required=True)
+    parser.add_argument('--output', type=str, help='Path to save the output', required=True)
 
     return parser
 
