@@ -18,7 +18,7 @@ def main(args):
     output = os.path.join(args.output, args.name)
     if args.mode == 'tracts':
 
-        class_label_dict = pd.read_csv(args.classes).to_dict()
+        class_label_dict = pd.read_csv(args.classes).to_dict('list')
         global n_classes
         n_classes = len(class_label_dict['label'])
         
