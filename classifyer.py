@@ -32,7 +32,7 @@ def main(args):
     if not os.path.exists(fibersampling_args["output"]):
         os.mkdir(fibersampling_args["output"])
 
-    # fibersampling.main(argparse.Namespace(**fibersampling_args))
+    fibersampling.main(argparse.Namespace(**fibersampling_args))
 
     for file in os.listdir(fibersampling_args["output"]):
         if file.endswith(".vtk"):
@@ -48,7 +48,7 @@ def main(args):
     computeCsv_args["num_subjects"] = "single"
     computeCsv_args["mode"] = "brain"
 
-    # computeCsv.main(argparse.Namespace(**computeCsv_args))
+    computeCsv.main(argparse.Namespace(**computeCsv_args))
 
     ############################ 3. Classify the data ############################
     print("""\n################################ Classifying the data ################################\n""")
