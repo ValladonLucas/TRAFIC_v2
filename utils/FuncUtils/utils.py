@@ -474,7 +474,7 @@ def compute_single_subject(vtk_path, npy_path, df, class_label_dict, COUNT=0):
     brain_path = os.path.join('/'.join(vtk_path.split('/')[:-1]), f'{vtk_path.split("/")[-1].split("_")[0]}_brain.vtk')
     print(f"\tComputing brain : {brain_path}")
     x_min, x_max, y_min, y_max, z_min, z_max = get_bounds(brain_path)
-
+    
     for tract in vtk_dict.keys():
         if tract in npy_dict.keys():
             if tract.replace("_sampled", "") not in class_label_dict['class']:
