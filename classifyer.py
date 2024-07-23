@@ -82,7 +82,7 @@ def get_argparse():
     parser.add_argument('--num_workers', type=int, help='Number of workers', default=7)
     parser.add_argument('--num_points', type=int, help='Number of points', default=128)
 
-    parser.add_argument('--model', type=str, help='Model to train', default="seqDECConf")
+    parser.add_argument('--model', type=str, help='Model to train', default="TractCurvNet")
     parser.add_argument('--checkpoint_path', type=str, help='Path to the checkpoint', required=True)
 
     parser.add_argument('--classes', type=str, help='Path to the json file with the classes', required=True)

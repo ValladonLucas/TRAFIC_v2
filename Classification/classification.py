@@ -7,7 +7,7 @@ import torch
 import numpy as np
 import pandas as pd
 from vtk.util.numpy_support import vtk_to_numpy
-from utils.FuncUtils.utils import calculate_batch_curvature, calculate_batch_torsion, normalize_batch, read_vtk_file, init_visitation_map, write_vtk_file, get_visitation_map, get_visitation_scores, visitation_pruning, iterative_clustering_pruning, mean_bounding_box_pruning, length_pruning
+from utils.FuncUtils.utils import time_calculator, calculate_batch_curvature, calculate_batch_torsion, normalize_batch, read_vtk_file, init_visitation_map, write_vtk_file, get_visitation_map, get_visitation_scores, visitation_pruning, iterative_clustering_pruning, mean_bounding_box_pruning, length_pruning
 from Dataloaders.classification_dataloader import DataModule
 import time
 import argparse
@@ -15,7 +15,7 @@ import argparse
 from models.pointnet import PN
 from models.dec import DEC
 from models.seqdec import seqDEC
-from models.seqdec_conf import seqDECConf
+from models.TractCurvNet import TractCurvNet
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
@@ -71,8 +71,8 @@ def main(args):
         model = DEC
     elif args.model == "seqDEC":
         model = seqDEC
-    elif args.model == "seqDECConf":
-        model = seqDECConf
+    elif args.model == "TractCurvNet":
+        model = TractCurvNet
     else:
         print("Invalid model")
         return
@@ -185,11 +185,11 @@ def main(args):
                 if not os.path.exists(os.path.join(args.save_path, f"{id}_uncleaned")):
                     os.mkdir(os.path.join(args.save_path, f"{id}_uncleaned"))
                 write_vtk_file(polydata, vtk_file)
-                if bundle_name not in ["T_Intra-CBLM-I&P_left", 
-                                       "T_Intra-CBLM-I&P_right", 
-                                       "T_Intra-CBLM-PaT_left", 
-                                       "T_Intra-CBLM-PaT_right",
-                                       "T_CPC", 
+                if bundle_name not in ["Intra-CBLM-I&P_left", 
+                                       "Intra-CBLM-I&P_right", 
+                                       "Intra-CBLM-PaT_left", 
+                                       "Intra-CBLM-PaT_right",
+                                       "CPC", 
                                        "CorticoSpinal-Right", 
                                        "CorticoSpinal-Left"]:
 

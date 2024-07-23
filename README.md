@@ -128,7 +128,7 @@ Example of a single training:
 # General configuration
 mode: half
 pretrained_model: # If you want to transfer the knowledge from an other model, write the path of a checkpoint file
-model: seqDECConf
+model: TractCurvNet
 n_epochs: 500
 num_workers: 7
 k: 5
@@ -172,7 +172,7 @@ Example of a double traning (knowledge transfer):
 ```yaml
 # General configuration
 mode: full
-model: seqDECConf
+model: TractCurvNet
 n_epochs: 500
 num_workers: 7
 k: 5
@@ -256,14 +256,14 @@ The CSV file has to have this structure :
 To run a classification, execute `classifyer.py` script with its options :
 
 ```bash
-CUDA_VISIBLE_DEVICES=<GPU-you-want-to-train-on> python classifyer.py -h --model <PN, PNConf, BLSTM, DEC, DECConf, seqDEC, seqDECConf> --checkpoint_path <PATH_TO_CHECKPOINT> --batch_size <BATCH_SIZE> --num_workers <NUMBER_OF_WORERS> --num_points <NUMBER_OF_SAMPLING_POINTS> --classes <CLASSES_JSON_FILE> --path <VTK_FILES_PATH> --output <OUTPUT_PATH>
+CUDA_VISIBLE_DEVICES=<GPU-you-want-to-train-on> python classifyer.py -h --model <PN, PNConf, BLSTM, DEC, DECConf, seqDEC, TractCurvNet> --checkpoint_path <PATH_TO_CHECKPOINT> --batch_size <BATCH_SIZE> --num_workers <NUMBER_OF_WORERS> --num_points <NUMBER_OF_SAMPLING_POINTS> --classes <CLASSES_JSON_FILE> --path <VTK_FILES_PATH> --output <OUTPUT_PATH>
 ```
 
 Table explaining all arguments :
 
 | <div style="width:150px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
-| `--model` | Required | Model you want to run the classification {`PN`, `DEC`, `seqDEC`, `seqDECConf`} | String |
+| `--model` | Required | Model you want to run the classification {`PN`, `DEC`, `seqDEC`, `TractCurvNet`} | String |
 | `--checkpoint_path` | Required | Path to the checkpoint file of a trained model | String |
 | `--batch_size` | Required | Batch size for classification. Default = 500 | Int |
 | `--num_workers` | Required | Number of workers for classification. Default = 7 | Int |

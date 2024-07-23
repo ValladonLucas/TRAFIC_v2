@@ -31,9 +31,9 @@ class MLP(nn.Module):
     def forward(self, x):
         return self.layers(x)
 
-class seqDECConf(pl.LightningModule):
+class TractCurvNet(pl.LightningModule):
     def __init__(self, **kwargs):
-        super(seqDECConf, self).__init__()
+        super(TractCurvNet, self).__init__()
 
         self.save_hyperparameters()
 

@@ -1,5 +1,3 @@
-import sys
-sys.path.append("/work/luvallad/project")
 import argparse
 import pytorch_lightning as pl
 import time
@@ -14,7 +12,7 @@ from neptune import ANONYMOUS_API_TOKEN
 from models.pointnet import PN
 from models.dec import DEC
 from models.seqdec import seqDEC
-from models.seqdec_conf import seqDECConf
+from models.TractCurvNet import TractCurvNet
 
 from utils.FuncUtils.utils import time_calculator, load_config
 
@@ -32,14 +30,14 @@ class DynamicModelCheckpoint(Callback):
 def main(args):
     
     # Initialize the model
-    elif args.model == "PN":
+    if args.model == "PN":
         model_type = PN
     elif args.model == "DEC":
         model_type = DEC
     elif args.model == "seqDEC":
         model_type = seqDEC
-    elif args.model == "seqDECConf":
-        model_type = seqDECConf
+    elif args.model == "TractCurvNet":
+        model_type = TractCurvNet
     else:
         print("Invalid model")
         return
@@ -79,7 +77,7 @@ def main(args):
         neptune_logger1 = NeptuneLogger(
             api_key=args.api_key,
             project=args.project,
-            tags=[args.model, "first dataset", f"k={args.k}" if args.model in ["DEC", "DECConf", "seqDEC", "seqDECConf"] else ""],
+            tags=[args.model, "first dataset", f"k={args.k}" if args.model in ["DEC", "DECConf", "seqDEC", "TractCurvNet"] else ""],
         )
         neptune_logger1.log_hyperparams(hparams)
 
@@ -135,7 +133,7 @@ def main(args):
         neptune_logger2 = NeptuneLogger(
             api_key=args.api_key,
             project=args.project,
-            tags=[args.model, "second dataset", f"k={args.k}" if args.model in ["DEC", "DECConf", "seqDEC", "seqDECConf"] else ""],
+            tags=[args.model, "second dataset", f"k={args.k}" if args.model in ["DEC", "DECConf", "seqDEC", "TractCurvNet"] else ""],
         )
 
         # Initialize the early stopping
@@ -202,7 +200,7 @@ def main(args):
         neptune_logger = NeptuneLogger(
             api_key=args.api_key,
             project=args.project,
-            tags=[args.model, f"k={args.k}" if args.model in ["DEC", "DECConf", "seqDEC", "seqDECConf"] else ""],
+            tags=[args.model, f"k={args.k}" if args.model in ["DEC", "DECConf", "seqDEC", "TractCurvNet"] else ""],
         )
 
         # Initialize the early stopping
