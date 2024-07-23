@@ -59,13 +59,14 @@ ls <path>
 # Output
 vtk_file1.vtk vtk_file2.vtk vtk_file3.vtk vtk_file4.vtk ... 
 ```
+In the parent folder of `path` there has to be a `subject_brain.vtk` file.
 Example of a `ls` command at given `--path` if `--mode` == `multiple`:
 ```bash
 # Command
 ls <path>
 
 # Output
-subject1 subject2 subject3 subject4 ... 
+subject1 subject2 subject3 subject4 ... subject1_brain.vtk subject2_brain.vtk ...
 ```
 
 ### Compute CSV file
