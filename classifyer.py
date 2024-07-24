@@ -22,6 +22,9 @@ def main(args):
             df.loc[len(df)] = [file.split('.')[0], os.path.join(args.path, file), None]
             # df = df._append({"original_path": os.path.join(args.path, file), "id": file.split('.')[0]}, ignore_index=True)
 
+    if not os.path.exists(args.output):
+        os.mkdir(args.output)
+
     ############################ 1. Resample the data ############################
     print("""\n################################ Resampling the data ################################\n""")
     fibersampling_args = get_argparse_dict(fibersampling.get_argparse())
