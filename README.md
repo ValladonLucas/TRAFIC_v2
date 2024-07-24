@@ -74,7 +74,7 @@ subject1 subject2 subject3 subject4 ... subject1_brain.vtk subject2_brain.vtk ..
 To generate the datasets, we use a Pytorch-Lightning **DataModule** that builds the **DataLoader** thanks to a `.csv` file generated with `computeCsv.py`.\
 Here's how to compute the csv file:
 ```bash
-python computeCsv.py --vtk_path <path-to-vtk-files> --npy_path <path-to-npy-files> --mode <tracts | brain> --num_subjects <single | multiple> --classes <path-to-classes-files> --name <output-file-name> --output <output-path>
+python computeCsv.py--vtk_path <path-to-vtk-files> --npy_path <path-to-npy-files> --mode <tracts | brain> --num_subjects <single | multiple> --classes <path-to-classes-files> --name <output-file-name> --output <output-path>
 ```
 | <div style="width:150px">Argument</div> | Required | Description | Data Type |
 |---|---|---|---|
@@ -253,10 +253,10 @@ The CSV file has to have this structure :
 
 ## Run a Classification
 
-To run a classification, execute `classifyer.py` script with its options :
+To run a classification, execute `run_classification.py` script with its options :
 
 ```bash
-CUDA_VISIBLE_DEVICES=<GPU-you-want-to-train-on> python classifyer.py -h --model <PN, PNConf, BLSTM, DEC, DECConf, seqDEC, TractCurvNet> --checkpoint_path <PATH_TO_CHECKPOINT> --batch_size <BATCH_SIZE> --num_workers <NUMBER_OF_WORERS> --num_points <NUMBER_OF_SAMPLING_POINTS> --classes <CLASSES_JSON_FILE> --path <VTK_FILES_PATH> --output <OUTPUT_PATH>
+CUDA_VISIBLE_DEVICES=<GPU-you-want-to-train-on> python run_classification.py -h --model <PN, PNConf, BLSTM, DEC, DECConf, seqDEC, TractCurvNet> --checkpoint_path <PATH_TO_CHECKPOINT> --batch_size <BATCH_SIZE> --num_workers <NUMBER_OF_WORERS> --num_points <NUMBER_OF_SAMPLING_POINTS> --classes <CLASSES_JSON_FILE> --path <VTK_FILES_PATH> --output <OUTPUT_PATH>
 ```
 
 Table explaining all arguments :
