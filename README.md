@@ -256,7 +256,7 @@ The CSV file has to have this structure :
 To run a classification, execute `run_classification.py` script with its options :
 
 ```bash
-CUDA_VISIBLE_DEVICES=<GPU-you-want-to-train-on> python run_classification.py -h --model <PN, PNConf, BLSTM, DEC, DECConf, seqDEC, TractCurvNet> --checkpoint_path <PATH_TO_CHECKPOINT> --batch_size <BATCH_SIZE> --num_workers <NUMBER_OF_WORERS> --num_points <NUMBER_OF_SAMPLING_POINTS> --classes <CLASSES_JSON_FILE> --path <VTK_FILES_PATH> --output <OUTPUT_PATH>
+CUDA_VISIBLE_DEVICES=<GPU-you-want-to-run-on> python run_classification.py -h --model <PN, PNConf, BLSTM, DEC, DECConf, seqDEC, TractCurvNet> --checkpoint_path <PATH_TO_CHECKPOINT> --batch_size <BATCH_SIZE> --num_workers <NUMBER_OF_WORERS> --num_points <NUMBER_OF_SAMPLING_POINTS> --classes <CLASSES_JSON_FILE> --path <VTK_FILES_PATH> --output <OUTPUT_PATH>
 ```
 
 Table explaining all arguments :
