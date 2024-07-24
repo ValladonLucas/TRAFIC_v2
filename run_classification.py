@@ -1,6 +1,6 @@
 import argparse
 from Classification import classification
-from Data_processing import fibersampling, computeCsv
+import fibersampling, computeCsv
 import os
 import shutil
 import pandas as pd
