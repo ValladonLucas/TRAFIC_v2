@@ -75,7 +75,6 @@ def main(args):
         return
 
     confidence_thresholds = classes['confidence_thresholds']
-    pruning_thresholds = classes['pruning_thresholds']
 
     with torch.no_grad():
         model = model.load_from_checkpoint(
