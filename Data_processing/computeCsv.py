@@ -1,13 +1,8 @@
-# Add the parent directory to the system path
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pandas as pd
 import os
 import argparse
-import json
 import time
-from utils.FuncUtils.utils import time_calculator, compute_single_subject, compute_multiple_subjects, compute_brains_csv
+from utils.utils import time_calculator, compute_single_subject, compute_multiple_subjects, compute_brains_csv
 
 def main(args):
     Tinit = time.time()

@@ -1,14 +1,10 @@
-# Add the parent directory to the system path
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from torch.utils.data import Dataset
 import torch
 import pytorch_lightning as pl
 import pandas as pd
 from torch.utils.data import DataLoader
 from torch.nn.utils.rnn import pad_sequence
-from utils.FuncUtils.utils import read_vtk_file, ExtractFiber
+from utils.utils import read_vtk_file, ExtractFiber
 
 """
 This Dataloader is used for classification.

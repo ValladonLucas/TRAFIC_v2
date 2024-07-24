@@ -7,7 +7,7 @@ from torch.nn import Sequential as Seq
 from torch_geometric.nn import global_max_pool, DynamicEdgeConv
 import torchmetrics
 import pytorch_lightning as pl
-from utils.FuncUtils.utils import calculate_batch_curvature, calculate_batch_torsion, normalize_batch
+from utils.utils import calculate_batch_curvature, calculate_batch_torsion, normalize_batch
 torch.set_float32_matmul_precision('high')
 
 class MLP(nn.Module):

@@ -14,7 +14,7 @@ from models.dec import DEC
 from models.seqdec import seqDEC
 from models.TractCurvNet import TractCurvNet
 
-from utils.FuncUtils.utils import time_calculator, load_config
+from utils.utils import time_calculator, load_config
 
 class DynamicModelCheckpoint(Callback):
     def __init__(self, checkpoint_callback, checkpoint_path):

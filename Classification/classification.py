@@ -1,13 +1,10 @@
-# Add the parent directory to the system path
-import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import vtk
 import torch
 import numpy as np
 import pandas as pd
 from vtk.util.numpy_support import vtk_to_numpy
-from utils.FuncUtils.utils import time_calculator, calculate_batch_curvature, calculate_batch_torsion, normalize_batch, read_vtk_file, init_visitation_map, write_vtk_file, get_visitation_map, get_visitation_scores, visitation_pruning, iterative_clustering_pruning, mean_bounding_box_pruning, length_pruning
+from utils.utils import time_calculator, calculate_batch_curvature, calculate_batch_torsion, normalize_batch, read_vtk_file, init_visitation_map, write_vtk_file, get_visitation_map, get_visitation_scores, visitation_pruning, iterative_clustering_pruning, mean_bounding_box_pruning, length_pruning
 from Dataloaders.classification_dataloader import DataModule
 import time
 import argparse

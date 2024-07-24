@@ -1,13 +1,10 @@
-# Add the parent directory to the system path
-import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import time
 import vtk
 import numpy as np
 from multiprocessing import Pool
 import argparse
-from utils.FuncUtils.utils import time_calculator
+from utils.utils import time_calculator
 
 def bundle_to_np(bundle_file):
     """
