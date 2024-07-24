@@ -120,7 +120,7 @@ We've tried multiple models :
 
 To train one of them, you just have to run this command :
 ```bash
-CUDA_VISIBLE_DEVICES=<GPU-you-want-to-train-on> python oneshot.py --config <config>
+CUDA_VISIBLE_DEVICES=<GPU-you-want-to-train-on> python main_train.py --config <config>
 ```
 The config file can have 2 different versions, one for a single training and one for a knowledge transfer.\
 Example of a single training:
