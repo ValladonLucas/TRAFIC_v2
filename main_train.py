@@ -240,9 +240,9 @@ def main(args):
                         "translation": [args.translation, (-args.translation_range, args.translation_range)],
                         "probability": args.augmentation_prob,
                         }
-        print(args.pretrained_model)
+        
         if args.pretrained_model is not None:
-            print("\nOKOKOK\n")
+            print("Pretrained model: ", args.pretrained_model)
 
             # Load the pretrained model
             pre_trained_model = model_type.load_from_checkpoint(args.pretrained_model)
