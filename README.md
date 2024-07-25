@@ -233,23 +233,26 @@ early_stopping_mode: min
 ```
 
 To visualize the training results, we use [neptune.ai](https://github.com/neptune-ai/neptune-client.git) which  is a lightweight experiment tracker for ML teams that struggle with debugging and reproducing experiments, sharing results, and messy model handover.\
-Feel free to to set your own API_KEY and your own project file. You can also use an anonymous API
+Feel free to to set your own `API_KEY` and your own project file. You can also use an anonymous API
 
 ## Classification & Confidence level
 
 To get a better classification, we've added a confidence branch to our model.\
-Users can now use their model using a `.csv` file with all the **_classes_** and **_labels_** they want to classify and also adjust the confidence threshold they want to apply to each bundle in order to get a more or less selective classification.
+Users can now use their model using a `.csv` file with all the **_classes_** and **_labels_** they want to classify and also adjust the confidence threshold they want to apply to each bundle in order to get a more or less selective classification. 
+The confidence threshold has to be $0.0 \le confidence\_threshold \le 1.0$.
+Finally, you can chose if the classified bundle has to follow our cleaning process or not.  
+Know that in any case, both cleaned and uncleaned tracts are saved.
 
 The CSV file has to have this structure :
 
-| label | class | confidence_thresholds |
-|:---:|:---:|:---:|
-| 0 | "Class_0" | 0.5 |
-| 1 | "Class_1" | 0.2 |
-| 2 | "Class_2" | 0.9 |
-| 3 | "Class_3" | 0.0 |
-| 4 | "Class_4" | 0.3 |
-|...|...|...|
+| label | class | confidence_thresholds | clean |
+|:---:|:---:|:---:|:---:|
+| 0 | "Class_0" | 0.5 | True |
+| 1 | "Class_1" | 0.2 | True |
+| 2 | "Class_2" | 0.9 | False |
+| 3 | "Class_3" | 0.0 | False |
+| 4 | "Class_4" | 0.3 | True |
+|...|...|...|...|
 
 ## Run a Classification
 
