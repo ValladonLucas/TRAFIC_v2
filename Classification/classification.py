@@ -75,6 +75,7 @@ def main(args):
         return
 
     confidence_thresholds = classes['confidence_thresholds']
+    clean = classes['clean']
 
     with torch.no_grad():
         model = model.load_from_checkpoint(
@@ -181,13 +182,7 @@ def main(args):
                 if not os.path.exists(os.path.join(args.save_path, f"{id}_uncleaned")):
                     os.mkdir(os.path.join(args.save_path, f"{id}_uncleaned"))
                 write_vtk_file(polydata, vtk_file)
-                if bundle_name not in ["Intra-CBLM-I&P_left", 
-                                       "Intra-CBLM-I&P_right", 
-                                       "Intra-CBLM-PaT_left", 
-                                       "Intra-CBLM-PaT_right",
-                                       "CPC", 
-                                       "CorticoSpinal-Right", 
-                                       "CorticoSpinal-Left"]:
+                if clean[i]:
 
                     visitation_map = get_visitation_map(polydata, empty_visitation_map, voxel_size)
                     visitation_scores = get_visitation_scores(visitation_map, polydata, voxel_size)
