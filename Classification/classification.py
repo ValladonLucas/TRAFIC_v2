@@ -176,7 +176,7 @@ def main(args):
 
         count = 0
         for i, polydata in enumerate(polydata_list): # Save the bundles into vtk files
-            if polydata.GetNumberOfCells() > 10 and i != len(polydata_list)-1:
+            if polydata.GetNumberOfCells() > 20 and i != len(polydata_list)-1:
                 bundle_name = classes["class"][i]
                 vtk_file = os.path.join(os.path.join(args.save_path, f"{id}_uncleaned"), bundle_name + ".vtk")
                 if not os.path.exists(os.path.join(args.save_path, f"{id}_uncleaned")):
@@ -206,28 +206,6 @@ def main(args):
                 write_vtk_file(polydata, vtk_file)
                 print(f"Saved {bundle_name}")
                 count += 1
-
-        for i, polydata_sampled in enumerate(sampled_polydata_list):
-            if polydata_sampled.GetNumberOfCells() > 10:
-
-                # visitation_map = get_visitation_map(polydata_sampled, empty_visitation_map, voxel_size)
-                # visitation_scores = get_visitation_scores(visitation_map, polydata_sampled, voxel_size)
-                # polydata_sampled, removed_idx = visitation_pruning(polydata_sampled, visitation_scores, 5)
-
-                # visitation_map = get_visitation_map(polydata_sampled, empty_visitation_map,voxel_size)
-                # visitation_scores = get_visitation_scores(visitation_map, polydata_sampled, voxel_size)
-                # polydata_sampled, removed_idx = visitation_pruning(polydata_sampled, visitation_scores, 80)
-
-                attention_list[i] = np.array(attention_list[i])
-                # attention_list[i] = np.delete(attention_list[i], removed_idx, axis=0)
-
-                bundle_name = classes["class"][i]
-                vtk_file = os.path.join(os.path.join(args.save_path, f"{id}_sampled"), bundle_name + "_sampled.vtk")
-                if not os.path.exists(os.path.join(args.save_path, f"{id}_sampled")):
-                    os.mkdir(os.path.join(args.save_path, f"{id}_sampled"))
-                # write_vtk_file(polydata_sampled, vtk_file)
-                # print(f"Saved {bundle_name}_sampled")
-
 
         print(f"\nSaved {count} bundles for brain {id}\n")
 

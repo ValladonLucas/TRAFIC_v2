@@ -47,7 +47,6 @@ class TractCurvNet(pl.LightningModule):
         noise, noise_range = kwargs['noise']
         shear, shear_range = kwargs['shear']
         rotation, rotation_range = kwargs['rotation']
-        translation, translation_range = kwargs['translation']
         probability = kwargs['probability']
 
         # Variables
@@ -58,7 +57,6 @@ class TractCurvNet(pl.LightningModule):
         self.noise, self.noise_range = noise, noise_range
         self.shear, self.shear_range = shear, shear_range
         self.rotation, self.rotation_range = rotation, rotation_range
-        self.translation, self.translation_range = translation, translation_range
         self.probability = probability
         self.beta = 0.5
         self.lambda_val = 0.1
@@ -71,7 +69,6 @@ class TractCurvNet(pl.LightningModule):
             'noise': (self.noise, self.noise_range),
             'shear': (self.shear, self.shear_range),
             'rotation': (self.rotation, self.rotation_range),
-            'translation': (self.translation, self.translation_range),
             'probability': self.probability
         }
         self.random_augmentation = RandomAugmentation(**self.aug_dict)
@@ -242,7 +239,6 @@ class TractCurvNet(pl.LightningModule):
         self.noise, self.noise_range = self.hparams['noise']
         self.shear, self.shear_range = self.hparams['shear']
         self.rotation, self.rotation_range = self.hparams['rotation']
-        self.translation, self.translation_range = self.hparams['translation']
         self.probability = self.hparams['probability']
 
         # Augmentations
@@ -250,7 +246,6 @@ class TractCurvNet(pl.LightningModule):
             'noise': (self.noise, self.noise_range),
             'shear': (self.shear, self.shear_range),
             'rotation': (self.rotation, self.rotation_range),
-            'translation': (self.translation, self.translation_range),
             'probability': self.probability
         }
         self.random_augmentation = RandomAugmentation(**self.aug_dict)

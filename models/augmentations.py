@@ -28,14 +28,6 @@ class Rotate(nn.Module):
     def forward(self, x):
         return self.rotate(x, self.roation_range)
 
-class Translate(nn.Module):
-    def __init__(self, translate_range):
-        super(Translate, self).__init__()
-        self.translate_range = translate_range
-        self.translate = translate_fibers
-    def forward(self, x):
-        return self.translate(x, self.translate_range)
-
 class RandomAugmentation(nn.Module):
     def __init__(self, **kwargs):
         super(RandomAugmentation, self).__init__()
@@ -43,7 +35,6 @@ class RandomAugmentation(nn.Module):
         noise, noise_range = kwargs['noise']
         shear, shear_range = kwargs['shear']
         rotation, rotation_range = kwargs['rotation']
-        translation, translation_range = kwargs['translation']
         probability = kwargs['probability']
 
         self.probability = probability
@@ -58,8 +49,6 @@ class RandomAugmentation(nn.Module):
         if rotation:
             self.rotate = Rotate(rotation_range)
             self.aug_list.append(self.rotate)
-        if translation:
-            self.translate = Translate(translation_range)
             self.aug_list.append(self.translate)
             
         self.compose_list = []

@@ -30,8 +30,6 @@ rotation: True                                    # Use rotation
 rotation_range: 0.1                               # Rotation range
 shear: True                                       # Use shear
 shear_range: 0.05                                 # Shear range
-translation: False                                # Use translation
-translation_range: 0.001                          # Translation range
 augmentation_prob: 0.4                            # Augmentation probability
 
 # Neptune configuration

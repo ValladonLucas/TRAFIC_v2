@@ -154,8 +154,6 @@ rotation: True                                    # Use rotation
 rotation_range: 0.1                               # Rotation range
 shear: True                                       # Use shear
 shear_range: 0.05                                 # Shear range
-translation: False                                # Use translation
-translation_range: 0.001                          # Translation range
 augmentation_prob: 0.4                            # Augmentation probability
 
 # Neptune configuration
@@ -198,8 +196,6 @@ rotation_1: True                                  # Use rotation
 rotation_range_1: 0.1                             # Rotation range
 shear_1: True                                     # Use shear
 shear_range_1: 0.01                               # Shear range
-translation_1: True                               # Use translation
-translation_range_1: 0.01                         # Translation range
 augmentation_prob_1: 0.3                          # Augmentation probability
 
 # Second model & data configuration
@@ -219,8 +215,6 @@ rotation_2: True
 rotation_range_2: 0.1
 shear_2: True
 shear_range_2: 0.01
-translation_2: True
-translation_range_2: 0.01
 augmentation_prob_2: 0.5
 
 # Neptune configuration
