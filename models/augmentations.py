@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torchvision.transforms import RandomApply, Compose
-from utils.utils import add_noise_to_fibers, shear_fibers, rotate_fibers, translate_fibers, generate_small_fiber
+from utils.utils import add_noise_to_fibers, shear_fibers, rotate_fibers, generate_small_fiber
 torch.set_float32_matmul_precision('high')
 
 class Noise(nn.Module):

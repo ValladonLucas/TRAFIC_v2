@@ -55,7 +55,6 @@ def main(args):
                     "noise": [args.noise_1, args.noise_range_1],
                     "rotation": [args.rotation_1, (-args.rotation_range_1, args.rotation_range_1)],
                     "shear": [args.shear_1, (-args.shear_range_1, args.shear_range_1)],
-                    "translation": [args.translation_1, (-args.translation_range_1, args.translation_range_1)],
                     "probability": args.augmentation_prob_1,
                     }
 
@@ -172,7 +171,6 @@ def main(args):
                         "noise": [args.noise_2, args.noise_range_2],
                         "rotation": [args.rotation_2, (-args.rotation_range_2, args.rotation_range_2)],
                         "shear": [args.shear_2, (-args.shear_range_2, args.shear_range_2)],
-                        "translation": [args.translation_2, (-args.translation_range_2, args.translation_range_2)],
                         "probability": args.augmentation_prob_2,
                         }
         model2.update_hparams(**new_hparams)
@@ -237,7 +235,6 @@ def main(args):
                         "noise": [args.noise, args.noise_range],
                         "rotation": [args.rotation, (-args.rotation_range, args.rotation_range)],
                         "shear": [args.shear, (-args.shear_range, args.shear_range)],
-                        "translation": [args.translation, (-args.translation_range, args.translation_range)],
                         "probability": args.augmentation_prob,
                         }
         
