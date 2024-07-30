@@ -182,23 +182,25 @@ def main(args):
                 if not os.path.exists(os.path.join(args.save_path, f"{id}_uncleaned")):
                     os.mkdir(os.path.join(args.save_path, f"{id}_uncleaned"))
                 write_vtk_file(polydata, vtk_file)
-                if clean[i]:
-
-                    visitation_map = get_visitation_map(polydata, empty_visitation_map, voxel_size)
-                    visitation_scores = get_visitation_scores(visitation_map, polydata, voxel_size)
-                    threshold = np.mean(visitation_scores) - np.std(visitation_scores)
-                    polydata, _ = visitation_pruning(polydata, visitation_scores, threshold)                
+                if clean[i]:   
 
                     polydata = iterative_clustering_pruning(polydata, empty_visitation_map, voxel_size)
 
                     visitation_map = get_visitation_map(polydata, empty_visitation_map, voxel_size)
                     visitation_scores = get_visitation_scores(visitation_map, polydata, voxel_size)
                     threshold = np.mean(visitation_scores) - np.std(visitation_scores)
+                    polydata, _ = visitation_pruning(polydata, visitation_scores, threshold)             
+
+                    visitation_map = get_visitation_map(polydata, empty_visitation_map, voxel_size)
+                    visitation_scores = get_visitation_scores(visitation_map, polydata, voxel_size)
                     polydata, _ = visitation_pruning(polydata, visitation_scores, threshold)
 
-
                     polydata, _ = mean_bounding_box_pruning(polydata)
-                    polydata = length_pruning(polydata)  
+                    polydata = length_pruning(polydata)
+
+                    visitation_map = get_visitation_map(polydata, empty_visitation_map, voxel_size)
+                    visitation_scores = get_visitation_scores(visitation_map, polydata, voxel_size)
+                    polydata, _ = visitation_pruning(polydata, visitation_scores, threshold)  
 
                 vtk_file = os.path.join(os.path.join(args.save_path, f"{id}"), bundle_name + ".vtk")
                 if not os.path.exists(os.path.join(args.save_path, f"{id}")):
